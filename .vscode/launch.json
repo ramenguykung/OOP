@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "L6",
+            "request": "launch",
+            "mainClass": "L6",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
+            "name": "L1",
+            "request": "launch",
+            "mainClass": "L1",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
             "name": "L7",
             "request": "launch",
             "mainClass": "L7",
