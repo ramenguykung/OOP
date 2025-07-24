@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Method_L6",
+            "request": "launch",
+            "mainClass": "Method_L6",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
             "name": "Class_L8",
             "request": "launch",
             "mainClass": "Class_L8",
