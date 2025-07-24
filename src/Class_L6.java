@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class L6 {
+public class Class_L6 {
     public static void main(String[] args) {
         Account account = new Account(1122, 20000);
         account.setDate(new Date(2025, 7, 24));
