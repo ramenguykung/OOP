@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Array_L5",
+            "request": "launch",
+            "mainClass": "Array_L5",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
+            "name": "Array_L1",
+            "request": "launch",
+            "mainClass": "Array_L1",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
+            "name": "Array",
+            "request": "launch",
+            "mainClass": "Array",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
             "name": "Method_L6",
             "request": "launch",
             "mainClass": "Method_L6",
