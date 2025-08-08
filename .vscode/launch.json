@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Inheritance_EX",
+            "request": "launch",
+            "mainClass": "Inheritance_EX",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
             "name": "Array_L5",
             "request": "launch",
             "mainClass": "Array_L5",

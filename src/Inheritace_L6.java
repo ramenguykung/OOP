@@ -1,0 +1,286 @@
+public class Inheritace_L6 {
+    public static void main(String[] args) {
+    }
+}
+class Account {
+    private int id, day, year;
+    private double balance, annualInterestRate;
+    private Date dateCreated;
+    private String month;
+    private Person objPerson;
+
+    public Account() {
+        this.id = 0;
+        this.balance = 0.0;
+        this.annualInterestRate = 0.0;
+        this.dateCreated = new Date();
+    }
+    public Account(int id, double balance) {
+        this.id = id;
+        this.balance = balance;
+        this.annualInterestRate = 0.0;
+        this.dateCreated = new Date();
+    }
+    public Account(int year, String month, int day) {
+        this.id = 0;
+        this.balance = 0;
+        this.annualInterestRate = 0.0;
+        this.dateCreated = new Date(year, month, day);
+    }
+
+    /**
+     * Returns the ID of the account.
+     * @return the account ID
+     */
+    public int getId() {
+        return this.id;
+        
+    }
+
+    /**
+     * Sets the ID of the account.
+     * @param id the new ID to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Returns the current balance of the account.
+     * @return the current balance
+     */
+    public double getBalance() {
+        return this.balance;
+    }
+
+    /**
+     * Sets the balance of the account.
+     * @param balance the new balance to set
+     */
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    /**
+     * Returns the date when the account was created.
+     * @return the date of account creation
+     */
+    public Date getDate() {
+        return this.dateCreated;
+    }
+
+    /**
+     * Sets the date when the account was created.
+     * @param dateCreated the date of account creation
+     */
+    public void setDate(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    /**
+     * Returns the ID of the account.
+     * @return the account ID
+     */
+    public double getAnnualInterestRate() {
+        return this.annualInterestRate;
+    }
+
+    /**
+     * Sets the annual interest rate for the account.
+     * @param annualInterestRate the annual interest rate as a percentage
+     */
+    public void setAnnualInterestRate(double annualInterestRate) {
+        this.annualInterestRate = annualInterestRate;
+    }
+
+    /**
+     * Calculates the monthly interest rate based on the annual interest rate.
+     * @return the monthly interest rate as a percentage
+     */
+    public double getMonthlyInterestRate() {
+        return this.annualInterestRate / 12;
+    }
+
+    /**
+     * Calculates the monthly interest based on the current balance and annual interest rate.
+     * @return the monthly interest amount
+     */
+    public double getMonthlyInterest() {
+        return this.balance * getMonthlyInterestRate() / 100;
+    }
+
+    /**
+     * Withdraws a specified amount from the account if sufficient balance is available.
+     * @param amount the amount to withdraw
+     */
+    public void withdraw(double amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+        } else {
+            System.out.println("Insufficient balance for withdrawal.");
+        }
+    }
+
+    /**
+     * Deposits a specified amount into the account.
+     * @param amount the amount to deposit
+     */
+    public void deposit(double amount) {
+        if (amount > 0.0) {
+            this.balance += amount;
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
+
+    public void transfer(Account other, double amount) {
+        if (amount <= this.balance) {
+            this.withdraw(amount);
+            other.deposit(amount);
+        } else {
+            System.out.println("Insufficient balance for transfer.");
+        }
+    }
+}
+class Person {
+    private String name, surname;
+    private int age;
+    private Date birthDate;
+    
+    public Person() {
+        this.name = "";
+        this.surname = "";
+        this.age = 0;
+        this.birthDate = new Date();
+    }
+    public Person(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+    public Person(String name, String surname, int age) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+    }
+    public Person(String name, String surname, int age, Date birthDate) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.birthDate = birthDate;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return this.name;
+    
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+    public String getSurname() {
+        return this.surname;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public int getAge() {
+        return this.age;
+    }
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+    public Date getBirthDate() {
+        return this.birthDate;
+    }
+}
+class Date {
+    private int year, day;
+    private String month;
+
+    public Date() {
+        this.year = 0;
+        this.month = "";
+        this.day = 0;
+    }
+
+    public Date(int year, String month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+    
+    public int getYear() {
+        return this.year;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getMonth() {
+        return this.month;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+    
+    public int getDay() {
+        return this.day;
+    }
+}
+class SavingAccount extends Account {
+    private double interestRate;
+    private double fee = 20.0;
+
+    public SavingAccount() {
+        super();
+        this.interestRate = 0.0;
+    }
+    public SavingAccount(int year, String month, int day, double interestRate) {
+        super(year, month, day);
+        this.interestRate = interestRate;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    @Override
+    public void transfer(Account other, double amount) {
+        if (amount <= (this.getBalance() - fee)) {
+            this.withdraw(amount);
+            other.deposit(amount);
+            System.out.printf("Transferred %f from %s to %s with transaction fee %f\n", amount, this.getId(), other.getId(), fee);
+        } else {
+            System.out.println("Insufficient balance for transfer.");
+        }
+    }
+}
+class FixAccount extends Account {
+    private double interestRate;
+    private int maturityPeriod; // in month
+    private boolean isMatured;
+
+    public FixAccount() {
+        super();
+        interestRate = 0.0;
+        maturityPeriod = 0;
+        this.isMatured = false;
+    }
+    public FixAccount(int year, String month, int day, double interestRate, int maturityPeriod) {
+        super(year, month, day);
+        this.interestRate = interestRate;
+        this.maturityPeriod = maturityPeriod;
+        this.isMatured = false;
+    }
+}
