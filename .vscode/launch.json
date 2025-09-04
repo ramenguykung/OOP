@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Abstract_Interface_L1",
+            "request": "launch",
+            "mainClass": "Abstract_Interface_L1",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
             "name": "Abstract_interface",
             "request": "launch",
             "mainClass": "Abstract_interface",
