@@ -242,6 +242,10 @@ class SavingAccount extends Account {
         super();
         this.interestRate = 0.0;
     }
+    public SavingAccount(int id, double balance) {
+        super(id, balance);
+        this.interestRate = 0.0;
+    }
     public SavingAccount(int year, String month, int day, double interestRate) {
         super(year, month, day);
         this.interestRate = interestRate;
@@ -277,10 +281,88 @@ class FixAccount extends Account {
         maturityPeriod = 0;
         this.isMatured = false;
     }
+    public FixAccount(int id, double balance) {
+        super(id, balance);
+        this.interestRate = 0.0;
+        this.maturityPeriod = 0;
+        this.isMatured = false;
+    }
     public FixAccount(int year, String month, int day, double interestRate, int maturityPeriod) {
         super(year, month, day);
         this.interestRate = interestRate;
         this.maturityPeriod = maturityPeriod;
         this.isMatured = false;
+    }
+
+    public boolean maturityPeriod() {
+        if (!isMatured) {
+            //TODO fix with passing parameters
+            // Get current date (you might want to pass current date as parameter)
+            Date currentDate = new Date(2025, "August", 8); // Current date
+            
+            // Calculate if more than 12 months (1 year) have passed
+            int yearsDifference = currentDate.getYear() - this.getDate().getYear();
+            
+            // If year difference is greater than 1, definitely matured
+            if (yearsDifference > 1) {
+                this.isMatured = true;
+                return true;
+            }
+            // If exactly 1 year difference, check month and day
+            else if (yearsDifference == 1) {
+                // For simplicity, assuming maturity after 1 full year
+                this.isMatured = true;
+                return true;
+            }
+            // Less than 1 year
+            else {
+                return false;
+            }
+        }
+        return this.isMatured;
+    }
+
+    /**
+     * Checks if the account has reached its specific maturity period.
+     * @return true if the account has reached its maturity period, false otherwise
+     */
+    public boolean hasReachedMaturityPeriod() {
+        if (!isMatured) {
+            // TODO fix with passing parameters
+            Date currentDate = new Date(2025, "August", 8); // Current date
+            int yearsDifference = currentDate.getYear() - this.getDate().getYear();
+            
+            // Convert maturity period from months to years for comparison
+            double maturityYears = this.maturityPeriod / 12.0;
+            
+            // Check if the time elapsed exceeds the maturity period
+            if (yearsDifference >= maturityYears) {
+                this.isMatured = true;
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return this.isMatured;
+    }
+
+    public int getMaturityPeriod() {
+        return maturityPeriod;
+    }
+
+    public void setMaturityPeriod(int maturityPeriod) {
+        this.maturityPeriod = maturityPeriod;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public boolean isMatured() {
+        return isMatured;
     }
 }

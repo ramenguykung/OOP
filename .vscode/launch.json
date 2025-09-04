@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Abstract_interface",
+            "request": "launch",
+            "mainClass": "Abstract_interface",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
+            "name": "Abstract_exp",
+            "request": "launch",
+            "mainClass": "Abstract_exp",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
             "name": "Inheritance_EX",
             "request": "launch",
             "mainClass": "Inheritance_EX",
