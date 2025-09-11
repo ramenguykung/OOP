@@ -50,7 +50,15 @@ public class GUI_L4 extends JFrame {
     class Listener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (Integer.parseInt(jtfmonitor.getText()) != String)
+            String text = jtfmonitor.getText();
+            try {
+                int value = Integer.parseInt(text);
+                // Now you can use the value, e.g., compare it to something
+                // For example: if (value != someOtherValue)
+            } catch (NumberFormatException ex) {
+                // Handle invalid input, e.g., show an error message
+                JOptionPane.showMessageDialog(null, "Please enter a valid integer.");
+            }
         }
     }
 }
