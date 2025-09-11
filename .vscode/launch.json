@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Microwave",
+            "request": "launch",
+            "mainClass": "Microwave",
+            "projectName": "OOP_76a0271a"
+        },
+        {
+            "type": "java",
+            "name": "Jframe",
+            "request": "launch",
+            "mainClass": "Jframe",
+            "projectName": "OOP_76a0271a"
+        },
+        {
+            "type": "java",
             "name": "Abstract_Interface_L1",
             "request": "launch",
             "mainClass": "Abstract_Interface_L1",
