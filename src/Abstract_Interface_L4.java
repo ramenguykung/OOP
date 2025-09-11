@@ -22,6 +22,21 @@ abstract class Employee {
 class SalariedEmployee extends Employee {
     int salary;
 
-    public SalariedEmployee(String firstname, String lastname, String id, double sal) {
+    public SalariedEmployee(String firstname, String lastname, String id, int salary) {
+        super(firstname, lastname, id);
+        this.salary = salary;
+    }
+
+    @Override
+    public double bonus(int year) {
+        if (year > 5) {
+            return salary * 0.1 * year + 1000;
+        } else {
+            return salary * 0.1 * year;
+        }
+    }
+    @Override
+    public double earning() {
+        return salary;
     }
 }
