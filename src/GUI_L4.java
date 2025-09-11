@@ -3,17 +3,13 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GUI_L4 extends JFrame {
-    JTextField jtfmonitor = new JTextField();
-    JButton jbtmonitir = new JButton();
+    JTextField jtfUSD = new JTextField(10);
+    JTextField jtfCAD = new JTextField(10);
+    JLabel jlbUSD = new JLabel("US Dollar");
+    JLabel jlbCAD = new JLabel("Canadian Dollar");
+    JButton jbtConvert = new JButton("Convert");
     GUI_L4() {
-        // attributes
-        JTextField jtfUSD = new JTextField(10);
-        JTextField jtfCAD = new JTextField(10);
         jtfCAD.setEditable(false);
-        JLabel jlbUSD = new JLabel("US Dollar");
-        JLabel jlbCAD = new JLabel("Canadian Dollar");
-        JButton jbtConvert = new JButton("Convert");
-
         JPanel p1 = new JPanel();
         p1.setLayout(new BorderLayout()); // Parent panel
         JPanel p2 = new JPanel();
@@ -50,13 +46,12 @@ public class GUI_L4 extends JFrame {
     class Listener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String text = jtfmonitor.getText();
+            String text = jtfUSD.getText();
             try {
                 int value = Integer.parseInt(text);
-                // Now you can use the value, e.g., compare it to something
-                // For example: if (value != someOtherValue)
+                double calculation = value * 1.39;
+                jtfCAD.setText(Double.toString(calculation));
             } catch (NumberFormatException ex) {
-                // Handle invalid input, e.g., show an error message
                 JOptionPane.showMessageDialog(null, "Please enter a valid integer.");
             }
         }
