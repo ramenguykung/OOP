@@ -32,7 +32,7 @@ public class GUI_L4 extends JFrame {
         p2.add(jtfCAD);
         p3.add(jlbUSD);
         p3.add(jlbCAD);
-        p4.add(new JButton("Convert"));
+        p4.add(new JButton("Convert"), BorderLayout.EAST);
 
         add(p1);
     }

@@ -9,6 +9,13 @@
             "name": "GUI_L4",
             "request": "launch",
             "mainClass": "GUI_L4",
+            "projectName": "OOP_aff1494e"
+        },
+        {
+            "type": "java",
+            "name": "GUI_L4",
+            "request": "launch",
+            "mainClass": "GUI_L4",
             "projectName": "OOP_76a0271a"
         },
         {
