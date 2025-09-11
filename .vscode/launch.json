@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GUI_L5",
+            "request": "launch",
+            "mainClass": "GUI_L5",
+            "projectName": "OOP_76a0271a"
+        },
+        {
+            "type": "java",
             "name": "GUI_L4",
             "request": "launch",
             "mainClass": "GUI_L4",
