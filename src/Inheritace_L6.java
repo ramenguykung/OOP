@@ -3,11 +3,9 @@ public class Inheritace_L6 {
     }
 }
 class Account {
-    private int id, day, year;
+    private int id;
     private double balance, annualInterestRate;
     private Date dateCreated;
-    private String month;
-    private Person objPerson;
 
     public Account() {
         this.id = 0;
@@ -77,8 +75,8 @@ class Account {
     }
 
     /**
-     * Returns the ID of the account.
-     * @return the account ID
+     * Returns the annual interest rate for the account.
+     * @return the annual interest rate
      */
     public double getAnnualInterestRate() {
         return this.annualInterestRate;
@@ -235,12 +233,10 @@ class Date {
     }
 }
 class SavingAccount extends Account {
-    private double interestRate;
     private double fee = 20.0;
 
     public SavingAccount() {
         super();
-        this.interestRate = 0.0;
     }
     public SavingAccount(int id, double balance) {
         super(id, balance);
@@ -248,15 +244,15 @@ class SavingAccount extends Account {
     }
     public SavingAccount(int year, String month, int day, double interestRate) {
         super(year, month, day);
-        this.interestRate = interestRate;
+        this.setAnnualInterestRate(annualInterestRate);
     }
 
-    public double getInterestRate() {
-        return interestRate;
+    public double getFee() {
+        return fee;
     }
 
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
+    public void setFee(double fee) {
+        this.fee = fee;
     }
 
     @Override
@@ -271,14 +267,12 @@ class SavingAccount extends Account {
     }
 }
 class FixAccount extends Account {
-    private double interestRate;
-    private int maturityPeriod; // in month
+    private final int maturityPeriod; // in months
     private boolean isMatured;
 
     public FixAccount() {
         super();
-        interestRate = 0.0;
-        maturityPeriod = 0;
+        this.maturityPeriod = 12; // default 12 months
         this.isMatured = false;
     }
     public FixAccount(int id, double balance) {
@@ -289,7 +283,7 @@ class FixAccount extends Account {
     }
     public FixAccount(int year, String month, int day, double interestRate, int maturityPeriod) {
         super(year, month, day);
-        this.interestRate = interestRate;
+        this.setAnnualInterestRate(annualInterestRate);
         this.maturityPeriod = maturityPeriod;
         this.isMatured = false;
     }
