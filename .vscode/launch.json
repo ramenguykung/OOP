@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Graphic_Demo1",
+            "request": "launch",
+            "mainClass": "Graphic_Demo1",
+            "projectName": "OOP_76a0271a"
+        },
+        {
+            "type": "java",
+            "name": "Lab_Ball",
+            "request": "launch",
+            "mainClass": "Lab_Ball",
+            "projectName": "OOP_76a0271a"
+        },
+        {
+            "type": "java",
             "name": "GUI_L5",
             "request": "launch",
             "mainClass": "GUI_L5",
