@@ -1,7 +1,11 @@
 import java.awt.Graphics;
+import java.awt.event.*;
+import java.sql.Time;
+
 import javax.swing.*;
 
 public class Graphic_Demo1 extends JFrame{
+    int angle = 0;
     public Graphic_Demo1() {
         setTitle("DrawArcs");
         add(new ArcPanel());
@@ -16,7 +20,19 @@ public class Graphic_Demo1 extends JFrame{
 }
 
 class ArcPanel extends JPanel {
-    @Override
+    int angle = 0;
+    ArcPanel() {
+        t.start();
+    }
+    Timer t = new Timer(1, new Listerner());
+    class Listerner implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            angle += 1;
+            repaint();
+        }
+    }
+    @Override 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -27,9 +43,9 @@ class ArcPanel extends JPanel {
         int x = xCenter - radius;
         int y = yCenter - radius;
 
-        g.fillArc(x, y, 2 * radius, 2 * radius, 0, 30);
-        g.fillArc(x, y, 2 * radius, 2 * radius, 90, 30);
-        g.fillArc(x, y, 2 * radius, 2 * radius, 180, 30);
-        g.fillArc(x, y, 2 * radius, 2 * radius, 270, 30);
+        g.fillArc(x, y, 2 * radius, 2 * radius, angle, 30);
+        g.fillArc(x, y, 2 * radius, 2 * radius, angle + 90, 30);
+        g.fillArc(x, y, 2 * radius, 2 * radius, angle + 180, 30);
+        g.fillArc(x, y, 2 * radius, 2 * radius, angle + 270, 30);
     }
 }
