@@ -1,6 +1,5 @@
 import java.awt.Graphics;
 import java.awt.event.*;
-import java.sql.Time;
 
 import javax.swing.*;
 
