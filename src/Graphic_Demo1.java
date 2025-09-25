@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class Graphic_Demo1 extends JFrame{
@@ -10,7 +11,7 @@ public class Graphic_Demo1 extends JFrame{
     int angle = 0;
     public Graphic_Demo1() {
         JPanel p1 = new JPanel();
-        p1.setLayout(new BorderLayout());
+        p1.setLayout(new GridLayout(4, 1, 10, 10));
         p1.add(bt0);
         p1.add(bt1);
         p1.add(bt2);
