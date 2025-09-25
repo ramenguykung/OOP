@@ -31,6 +31,11 @@ public class Lab_Ball extends JFrame {
 
         private int angle = 90;
 
+        private boolean hit1 = false;
+        private boolean hit2 = false;
+        private int x_Balloon2 = (int) (Math.random() * PANEL_WIDTH);
+        private int y_Balloon2 = (int) (Math.random() * PANEL_HEIGHT);
+
         private LinkedList<SmallBall> list = new LinkedList<SmallBall>();
 
         class SmallBall {
@@ -71,8 +76,6 @@ public class Lab_Ball extends JFrame {
             timer.start();
         }
 
-        boolean hit = false;
-
         /** Paint message */
         public void paint(Graphics g) {
             super.paintComponent(g);
@@ -88,7 +91,7 @@ public class Lab_Ball extends JFrame {
             g.drawLine(getWidth() / 2 + 1, getHeight(), x + 1, y);
             g.drawLine(getWidth() / 2 + 2, getHeight(), x + 2, y);
 
-            if (hit) {
+            if (hit1) {
                 // Display three small pieces
                 g.drawOval(x_Balloon - BALLOON_RADIUS / 2 - 5,
                         y_Balloon - BALLOON_RADIUS / 2, BALLOON_RADIUS,
@@ -103,7 +106,7 @@ public class Lab_Ball extends JFrame {
                         y_Balloon - 2 * BALLOON_RADIUS - 5 - BALLOON_RADIUS / 2, BALLOON_RADIUS,
                         BALLOON_RADIUS);
 
-                hit = false;
+                hit1 = false;
 
                 // New random location
                 x_Balloon = (int) (Math.random() * PANEL_WIDTH);
@@ -112,9 +115,37 @@ public class Lab_Ball extends JFrame {
                 return;
             }
 
+            if (hit2) {
+                // Display three small pieces
+                g.drawOval(x_Balloon2 - BALLOON_RADIUS / 2 - 5,
+                        y_Balloon2 - BALLOON_RADIUS / 2, BALLOON_RADIUS,
+                        BALLOON_RADIUS);
+                g.drawOval(x_Balloon2 + 2 * BALLOON_RADIUS + 5 - BALLOON_RADIUS / 2,
+                        y_Balloon2 - BALLOON_RADIUS / 2, BALLOON_RADIUS,
+                        BALLOON_RADIUS);
+                g.drawOval(x_Balloon2 - BALLOON_RADIUS / 2,
+                        y_Balloon + 2 * BALLOON_RADIUS + 5 - BALLOON_RADIUS / 2, BALLOON_RADIUS,
+                        BALLOON_RADIUS);
+                g.drawOval(x_Balloon2 - BALLOON_RADIUS / 2,
+                        y_Balloon2 - 2 * BALLOON_RADIUS - 5 - BALLOON_RADIUS / 2, BALLOON_RADIUS,
+                        BALLOON_RADIUS);
+
+                hit2 = false;
+
+                // New random location
+                x_Balloon2 = (int) (Math.random() * PANEL_WIDTH);
+                y_Balloon2 = (int) (Math.random() * PANEL_HEIGHT);
+
+                return;
+            }
+
             g.drawOval(x_Balloon - BALLOON_RADIUS,
                     y_Balloon - BALLOON_RADIUS, 2 * BALLOON_RADIUS,
                     2 * BALLOON_RADIUS);// love ajansatid;
+
+            g.drawOval(x_Balloon2 - BALLOON_RADIUS,
+                    y_Balloon2 - BALLOON_RADIUS, 2 * BALLOON_RADIUS,
+                    2 * BALLOON_RADIUS);
 
             // Draw small hitting balls
             for (int i = 0; i < list.size(); i++) {
@@ -132,11 +163,19 @@ public class Lab_Ball extends JFrame {
                 if (overlaps(x, y, BALL_RADIUS,
                         x_Balloon, y_Balloon, BALLOON_RADIUS)) {
                     list.remove(i);
-                    hit = true;
+                    hit1 = true;
+                    i--;
+                } else if (overlaps(x, y, BALL_RADIUS,
+                        x_Balloon2, y_Balloon2, BALLOON_RADIUS)) {
+                    list.remove(i);
+                    hit2 = true;
+                    i--;
                 }
 
-                if (x > getWidth() || x < 0 || y < 0)
+                if (x > getWidth() || x < 0 || y < 0) {
                     list.remove(i);
+                    i--;
+                }
             }
         }
     }
