@@ -9,11 +9,13 @@ public class ClockAnimation extends JFrame {
     StillClock clockNYC = new StillClock();
     Thread t = new Thread() {
         public void run() {
-            try {
-                Thread.sleep(1000);
-                clockBKK.setCurrentTime();
-                clockBKK.repaint();
-            } catch (Exception e) {
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                    clockBKK.setCurrentTime();
+                    clockBKK.repaint();
+                } catch (Exception e) {
+                }
             }
         }
     };
