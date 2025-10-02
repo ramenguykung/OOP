@@ -5,16 +5,16 @@ import javax.swing.*;
 
 public class ClockAnimation extends JFrame {
 
-    StillClock clockBKK = new StillClock();
-    StillClock clockNYC = new StillClock();
+    StillClock clockBKK = new StillClock(TimeZone.getDefault(), "Bangkok");
+    StillClock clockNYC = new StillClock(TimeZone.getTimeZone("America/New_York"));
     Thread t = new Thread() {
         public void run() {
             while (true) {
                 try {
                     Thread.sleep(1000);
-                    clockBKK.setCurrentTime(TimeZone.getDefault()); // TODO passing timzone from instance
+                    clockBKK.setCurrentTime(clockBKK.gettimeZone());
                     clockBKK.repaint();
-                    clockNYC.setCurrentTime(TimeZone.getTimeZone("America/New_York"));
+                    clockNYC.setCurrentTime(clockNYC.gettimeZone());
                     clockNYC.repaint();
                 } catch (Exception e) {
                 }

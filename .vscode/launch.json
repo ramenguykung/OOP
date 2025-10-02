@@ -9,6 +9,13 @@
             "name": "ClockAnimation",
             "request": "launch",
             "mainClass": "ClockAnimation",
+            "projectName": "OOP_97cd32b9"
+        },
+        {
+            "type": "java",
+            "name": "ClockAnimation",
+            "request": "launch",
+            "mainClass": "ClockAnimation",
             "projectName": "OOP_76a0271a"
         },
         {
