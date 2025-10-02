@@ -1,9 +1,12 @@
+
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
 public class ClockAnimation extends JFrame {
+
     StillClock clockBKK = new StillClock();
+    StillClock clockNYC = new StillClock();
     Thread t = new Thread() {
         public void run() {
             try {
@@ -14,10 +17,12 @@ public class ClockAnimation extends JFrame {
             }
         }
     };
+
     ClockAnimation() {
         add(clockBKK);
         t.start();
     }
+
     public static void main(String[] args) {
         ClockAnimation f = new ClockAnimation();
         f.setSize(900, 800);
@@ -25,57 +30,78 @@ public class ClockAnimation extends JFrame {
         f.setVisible(true);
     }
 }
+
 class StillClock extends JPanel {
+
     private int hour;
     private int minute;
     private int second;
 
-    /** Construct a default clock with the current time */
+    /**
+     * Construct a default clock with the current time
+     */
     public StillClock() {
         setCurrentTime();
     }
 
-    /** Construct a clock with specified hour, minute, and second */
+    /**
+     * Construct a clock with specified hour, minute, and second
+     */
     public StillClock(int hour, int minute, int second) {
         this.hour = hour;
         this.minute = minute;
         this.second = second;
     }
 
-    /** Return hour */
+    /**
+     * Return hour
+     */
     public int getHour() {
         return hour;
     }
 
-    /** Set a new hour */
+    /**
+     * Set a new hour
+     */
     public void setHour(int hour) {
         this.hour = hour;
         repaint();
     }
 
-    /** Return minute */
+    /**
+     * Return minute
+     */
     public int getMinute() {
         return minute;
     }
 
-    /** Set a new minute */
+    /**
+     * Set a new minute
+     */
     public void setMinute(int minute) {
         this.minute = minute;
         repaint();
     }
 
-    /** Return second */
+    /**
+     * Return second
+     */
     public int getSecond() {
         return second;
     }
 
-    /** Set a new second */
+    /**
+     * Set a new second
+     */
     public void setSecond(int second) {
         this.second = second;
         repaint();
     }
 
-    @Override /** Draw the clock */
+    @Override
+    /**
+     * Draw the clock
+     */
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -95,28 +121,28 @@ class StillClock extends JPanel {
 
         // Draw second hand
         int sLength = (int) (clockRadius * 0.8);
-        int xSecond = (int) (xCenter + sLength *
-                Math.sin(second * (2 * Math.PI / 60)));
-        int ySecond = (int) (yCenter - sLength *
-                Math.cos(second * (2 * Math.PI / 60)));
+        int xSecond = (int) (xCenter + sLength
+                * Math.sin(second * (2 * Math.PI / 60)));
+        int ySecond = (int) (yCenter - sLength
+                * Math.cos(second * (2 * Math.PI / 60)));
         g.setColor(Color.red);
         g.drawLine(xCenter, yCenter, xSecond, ySecond);
 
         // Draw minute hand
         int mLength = (int) (clockRadius * 0.65);
-        int xMinute = (int) (xCenter + mLength *
-                Math.sin(minute * (2 * Math.PI / 60)));
-        int yMinute = (int) (yCenter - mLength *
-                Math.cos(minute * (2 * Math.PI / 60)));
+        int xMinute = (int) (xCenter + mLength
+                * Math.sin(minute * (2 * Math.PI / 60)));
+        int yMinute = (int) (yCenter - mLength
+                * Math.cos(minute * (2 * Math.PI / 60)));
         g.setColor(Color.blue);
         g.drawLine(xCenter, yCenter, xMinute, yMinute);
 
         // Draw hour hand
         int hLength = (int) (clockRadius * 0.5);
-        int xHour = (int) (xCenter + hLength *
-                Math.sin((hour % 12 + minute / 60.0) * (2 * Math.PI / 12)));
-        int yHour = (int) (yCenter - hLength *
-                Math.cos((hour % 12 + minute / 60.0) * (2 * Math.PI / 12)));
+        int xHour = (int) (xCenter + hLength
+                * Math.sin((hour % 12 + minute / 60.0) * (2 * Math.PI / 12)));
+        int yHour = (int) (yCenter - hLength
+                * Math.cos((hour % 12 + minute / 60.0) * (2 * Math.PI / 12)));
         g.setColor(Color.green);
         g.drawLine(xCenter, yCenter, xHour, yHour);
     }
