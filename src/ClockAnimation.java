@@ -1,8 +1,31 @@
 import java.awt.*;
-import javax.swing.*;
 import java.util.*;
+import javax.swing.*;
 
-public class StillClock extends JPanel {
+public class ClockAnimation extends JFrame {
+    StillClock clockBKK = new StillClock();
+    Thread t = new Thread() {
+        public void run() {
+            try {
+                Thread.sleep(1000);
+                clockBKK.setCurrentTime();
+                clockBKK.repaint();
+            } catch (Exception e) {
+            }
+        }
+    };
+    ClockAnimation() {
+        add(clockBKK);
+        t.start();
+    }
+    public static void main(String[] args) {
+        ClockAnimation f = new ClockAnimation();
+        f.setSize(900, 800);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+    }
+}
+class StillClock extends JPanel {
     private int hour;
     private int minute;
     private int second;

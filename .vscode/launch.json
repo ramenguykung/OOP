@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ClockAnimation",
+            "request": "launch",
+            "mainClass": "ClockAnimation",
+            "projectName": "OOP_76a0271a"
+        },
+        {
+            "type": "java",
             "name": "Graphic_Demo1",
             "request": "launch",
             "mainClass": "Graphic_Demo1",
