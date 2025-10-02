@@ -32,7 +32,7 @@ public class ClockAnimation extends JFrame {
 
     public static void main(String[] args) {
         ClockAnimation f = new ClockAnimation();
-        f.setSize(900, 800);
+        f.setSize(600, 400);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
     }
