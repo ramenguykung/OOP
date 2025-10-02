@@ -12,8 +12,10 @@ public class ClockAnimation extends JFrame {
             while (true) {
                 try {
                     Thread.sleep(1000);
-                    clockBKK.setCurrentTime();
+                    clockBKK.setCurrentTime(TimeZone.getDefault()); // TODO passing timzone from instance
                     clockBKK.repaint();
+                    clockNYC.setCurrentTime(TimeZone.getTimeZone("America/New_York"));
+                    clockNYC.repaint();
                 } catch (Exception e) {
                 }
             }
@@ -21,7 +23,10 @@ public class ClockAnimation extends JFrame {
     };
 
     ClockAnimation() {
-        add(clockBKK);
+        JPanel p1 = new JPanel(new GridLayout(1, 2));
+        p1.add(clockBKK);
+        p1.add(clockNYC);
+        add(p1);
         t.start();
     }
 
@@ -38,12 +43,16 @@ class StillClock extends JPanel {
     private int hour;
     private int minute;
     private int second;
+    private TimeZone timeZone;
+    private String city;
 
     /**
      * Construct a default clock with the current time
      */
     public StillClock() {
-        setCurrentTime();
+        this.timeZone = timeZone.getDefault();
+        this.city = "Local";
+        setCurrentTime(this.timeZone);
     }
 
     /**
@@ -53,6 +62,19 @@ class StillClock extends JPanel {
         this.hour = hour;
         this.minute = minute;
         this.second = second;
+        this.timeZone = timeZone.getDefault();
+        this.city = "Local";
+    }
+    public StillClock(TimeZone timeZone) {
+        this.timeZone = timeZone;
+        this.city = timeZone.getID();
+        setCurrentTime(this.timeZone);
+    }
+
+    public StillClock(TimeZone timeZone, String city) {
+        this.timeZone = timeZone;
+        this.city = city;
+        setCurrentTime(this.timeZone);
     }
 
     /**
@@ -100,6 +122,15 @@ class StillClock extends JPanel {
         repaint();
     }
 
+    public TimeZone gettimeZone() {
+        return this.timeZone;
+    }
+
+    public void setTimeZone(TimeZone timeZone) {
+        this.timeZone = timeZone;
+        repaint();
+    }
+
     @Override
     /**
      * Draw the clock
@@ -120,6 +151,9 @@ class StillClock extends JPanel {
         g.drawString("9", xCenter - clockRadius + 3, yCenter + 5);
         g.drawString("3", xCenter + clockRadius - 10, yCenter + 3);
         g.drawString("6", xCenter - 3, yCenter + clockRadius - 3);
+
+        // TODO Draw city name
+        // g.drawString(city, xCenter - 10, yCenter - 10, clockRadius - 10);
 
         // Draw second hand
         int sLength = (int) (clockRadius * 0.8);
@@ -149,9 +183,9 @@ class StillClock extends JPanel {
         g.drawLine(xCenter, yCenter, xHour, yHour);
     }
 
-    public void setCurrentTime() {
+    public void setCurrentTime(TimeZone timeZone) {
         // Construct a calendar for the current date and time
-        Calendar calendar = new GregorianCalendar();
+        Calendar calendar = new GregorianCalendar(timeZone);
 
         // Set current hour, minute and second
         this.hour = calendar.get(Calendar.HOUR_OF_DAY);
