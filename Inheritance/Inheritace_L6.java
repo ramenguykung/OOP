@@ -1,8 +1,85 @@
-
 public class Inheritace_L6 {
 
     public static void main(String[] args) {
-        FixAccount fixAccount = new FixAccount();
+        // Create regular accounts
+        Account acc1 = new Account(1001, 5000.0);
+        acc1.setAccountName("John", "Doe");
+        acc1.setAnnualInterestRate(4.5);
+        
+        Account acc2 = new Account(1002, 3000.0);
+        acc2.setAccountName("Jane", "Smith");
+        acc2.setAnnualInterestRate(4.5);
+        
+        // Create saving account
+        SavingAccount savingAcc = new SavingAccount(2001, 8000.0);
+        savingAcc.setAccountName("Bob", "Johnson");
+        savingAcc.setAnnualInterestRate(3.5);
+        savingAcc.setFee(20.0);
+        
+        // Create fixed account
+        FixAccount fixedAcc = new FixAccount(2023, "January", 15, 5.0, 12);
+        fixedAcc.setId(3001);
+        fixedAcc.setBalance(10000.0);
+        fixedAcc.setAccountName("Alice", "Williams");
+        fixedAcc.setAnnualInterestRate(5.0);
+        
+        System.out.println("=== Initial Account States ===");
+        printAccountInfo(acc1);
+        printAccountInfo(acc2);
+        printAccountInfo(savingAcc);
+        printAccountInfo(fixedAcc);
+        
+        System.out.println("\n=== Performing Transactions ===");
+        
+        // 1. Regular account deposit
+        System.out.println("\n1. Deposit $1000 to Account " + acc1.getId());
+        acc1.deposit(1000.0);
+        System.out.printf("New balance: $%.2f\n", acc1.getBalance());
+        
+        // 2. Regular account withdrawal
+        System.out.println("\n2. Withdraw $500 from Account " + acc1.getId());
+        acc1.withdraw(500.0);
+        System.out.printf("New balance: $%.2f\n", acc1.getBalance());
+        
+        // 3. Regular account transfer
+        System.out.println("\n3. Transfer $1000 from Account " + acc1.getId() + " to Account " + acc2.getId());
+        acc1.transfer(acc2, 1000.0);
+        System.out.printf("Account %d balance: $%.2f\n", acc1.getId(), acc1.getBalance());
+        System.out.printf("Account %d balance: $%.2f\n", acc2.getId(), acc2.getBalance());
+        
+        // 4. Saving account transfer (with fee)
+        System.out.println("\n4. Transfer $2000 from Saving Account " + savingAcc.getId() + " to Account " + acc2.getId());
+        savingAcc.transfer(acc2, 2000.0);
+        System.out.printf("Saving Account %d balance: $%.2f\n", savingAcc.getId(), savingAcc.getBalance());
+        System.out.printf("Account %d balance: $%.2f\n", acc2.getId(), acc2.getBalance());
+        
+        // 5. Calculate interest
+        System.out.println("\n5. Calculate Monthly Interest for Account " + acc1.getId());
+        System.out.printf("Monthly Interest Rate: %.4f%%\n", acc1.getMonthlyInterestRate());
+        System.out.printf("Monthly Interest Amount: $%.2f\n", acc1.getMonthlyInterest());
+        
+        // 6. Check fixed account maturity
+        System.out.println("\n6. Check Fixed Account Maturity Status");
+        System.out.printf("Fixed Account %d - Maturity Period: %d months\n", 
+            fixedAcc.getId(), fixedAcc.getMaturityPeriod());
+        System.out.printf("Has reached maturity period: %s\n", 
+            fixedAcc.hasReachedMaturityPeriod() ? "Yes" : "No");
+        
+        System.out.println("\n=== Final Account States ===");
+        printAccountInfo(acc1);
+        printAccountInfo(acc2);
+        printAccountInfo(savingAcc);
+        printAccountInfo(fixedAcc);
+    }
+    
+    private static void printAccountInfo(Account account) {
+        System.out.printf("\nAccount ID: %d\n", account.getId());
+        System.out.printf("Balance: $%.2f\n", account.getBalance());
+        System.out.printf("Annual Interest Rate: %.2f%%\n", account.getAnnualInterestRate());
+        System.out.printf("Date Created: %d-%s-%d\n", 
+            account.getDate().getDay(), 
+            account.getDate().getMonth(), 
+            account.getDate().getYear());
     }
 }
 
@@ -375,14 +452,11 @@ class FixAccount extends Account {
      */
     public boolean hasReachedMaturityPeriod() {
         if (!isMatured) {
-            // TODO fix with passing parameters
             Date currentDate = new Date(2025, "August", 8); // Current date
             int yearsDifference = currentDate.getYear() - this.getDate().getYear();
 
-            // Convert maturity period from months to years for comparison
             double maturityYears = this.maturityPeriod / 12.0;
 
-            // Check if the time elapsed exceeds the maturity period
             if (yearsDifference >= maturityYears) {
                 this.isMatured = true;
                 return true;
