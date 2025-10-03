@@ -1,2 +1,5 @@
 # Java Project Bin path
 bin/
+
+# Any .class files
+*.class
