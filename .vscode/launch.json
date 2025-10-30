@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "L4",
+            "request": "launch",
+            "mainClass": "Abstract.L4",
+            "projectName": "OOP_97cd32b9"
+        },
+        {
+            "type": "java",
+            "name": "GUI_L4",
+            "request": "launch",
+            "mainClass": "GUI_L4",
+            "projectName": "OOP_97cd32b9"
+        },
+        {
+            "type": "java",
             "name": "ClockAnimation",
             "request": "launch",
             "mainClass": "ClockAnimation",
